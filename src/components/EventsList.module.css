@@ -1,0 +1,37 @@
+.events {
+  margin: 2rem auto;
+  max-width: 40rem;
+}
+
+.events h2 {
+  font-size: 2rem;
+}
+
+.list {
+}
+
+.item {
+  margin-block: 2rem;
+  background-color: rgb(61, 57, 57);
+  border: darkred 1px solid;
+}
+
+.item a {
+  display: flex;
+}
+
+.item img {
+  width: 33%;
+  object-fit: cover;
+  display: block;
+}
+
+.content {
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
