@@ -21,3 +21,9 @@
 .list a.active {
   color: var(--color-neutral-200);
 }
+
+@media only screen and (max-width: 768px) {
+  .list {
+    justify-content: center;
+  }
+}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import classes from './EventsList.module.css';
 import DUMMY_EVENTS, { loadEvents } from '../store/dummyEvents';
 
-console.log(DUMMY_EVENTS);
+// console.log(DUMMY_EVENTS);
 
 const EventsList = () => {
   const [events, setEvents] = useState([]);
