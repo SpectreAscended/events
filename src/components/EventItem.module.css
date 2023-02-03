@@ -25,6 +25,7 @@
   margin-bottom: 1rem;
   font-size: 2rem;
   color: #d1d1d1;
+  text-transform: capitalize;
 }
 
 .content p {
@@ -49,5 +50,9 @@
 
   .content h2 {
     font-size: 1.6rem;
+  }
+
+  .event img {
+    border-radius: 0.25rem;
   }
 }

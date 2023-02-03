@@ -33,12 +33,13 @@
 
 .content {
   margin-left: 2rem;
-  margin-top: 1rem;
+  margin-block: 1rem;
 }
 
 .content h3 {
   font-size: 1.4rem;
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 @media only screen and (max-width: 768px) {
