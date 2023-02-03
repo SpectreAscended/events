@@ -1,0 +1,53 @@
+.event {
+  margin-inline: auto;
+  margin-top: 3rem;
+  max-width: 50rem;
+  background-color: #3d3939;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.event img {
+  max-width: 75%;
+  object-fit: contain;
+  display: block;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+}
+
+.content {
+  max-width: 75%;
+  margin-inline: auto;
+}
+
+.content h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #d1d1d1;
+}
+
+.content p {
+  margin-block: 1rem;
+  color: #d1d1d1;
+}
+
+@media only screen and (max-width: 768px) {
+  .event img {
+    max-width: 90%;
+  }
+
+  .content {
+    max-width: 90%;
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .event {
+    padding-inline: 0.25rem;
+  }
+
+  .content h2 {
+    font-size: 1.6rem;
+  }
+}
