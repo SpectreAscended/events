@@ -2,6 +2,9 @@
   --color-neutral-200: #ffc813;
   --color-neutral-400: #d1a427;
   --color-neutral-600: #a7831f;
+
+  --color-error-500: #b13030;
+  --color-error-200: #bdbbbb;
 }
 
 *,

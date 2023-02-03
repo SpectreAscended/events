@@ -1,16 +1,19 @@
 .page {
   max-width: 50rem;
   margin-inline: auto;
+  margin-top: 5rem;
   text-align: center;
 }
 
 .page h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: #b13030;
 }
 
 .page p {
   font-size: 1.6rem;
+  color: #bdbbbb;
 }
 
 @media only screen and (max-width: 768px) {
