@@ -13,15 +13,16 @@
   background-color: #3d3939;
   border-radius: 0.5rem;
   overflow: hidden;
-  transition: transform 250ms ease;
+  transition: transform 250ms, box-shadow 250ms ease;
+}
+
+.item:hover {
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-0.25rem) scale(1.025);
 }
 
 .item a {
   display: flex;
-}
-
-.item:hover {
-  transform: translateY(-0.25rem) scale(1.025);
 }
 
 .item img {
