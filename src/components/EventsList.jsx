@@ -1,32 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './EventsList.module.css';
-import DUMMY_EVENTS, { loadEvents } from '../store/dummyEvents';
 
-// console.log(DUMMY_EVENTS);
-
-const EventsList = () => {
-  const [events, setEvents] = useState([]);
-
-  useEffect(() => {
-    const loadData = async () => {
-      const data = await loadEvents();
-
-      const loadedEvents = [];
-      for (const key in data) {
-        loadedEvents.push({
-          id: key,
-          title: data[key].title,
-          description: data[key].description,
-          img: data[key].img,
-          date: data[key].date,
-        });
-      }
-      setEvents(loadedEvents);
-    };
-    loadData();
-  }, [loadEvents]);
-
+const EventsList = ({ events }) => {
   return (
     <section className={classes.events}>
       <h2>All Events</h2>

@@ -4,7 +4,6 @@ import EventsList from '../components/EventsList';
 
 const EventsPage = () => {
   const events = useLoaderData();
-  console.log(events);
 
   return <EventsList events={events} />;
 };
