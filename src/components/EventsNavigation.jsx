@@ -20,7 +20,7 @@ const EventsNavigation = () => {
           </li>
           <li>
             <NavLink
-              to="edit"
+              to="new"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }

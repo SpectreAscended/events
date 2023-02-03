@@ -1,0 +1,89 @@
+.form {
+  max-width: 50rem;
+  margin-inline: auto;
+  margin-block: 2rem;
+  padding-inline: 5rem;
+}
+
+.form label {
+  font-size: 1.4rem;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form input,
+.form textarea {
+  display: block;
+  width: 100%;
+  background-color: #635d5d;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  padding: 0.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: rgb(201, 200, 200);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.actions button {
+  position: relative;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  z-index: 2;
+  overflow: hidden;
+  background-color: #ccc;
+}
+
+.actions button::before {
+  content: '';
+  position: absolute;
+  background-color: #d1a427;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.actions button:hover::before {
+  transform: scaleX(1);
+}
+
+@media only screen and (max-width: 768px) {
+  .form {
+    padding-inline: 2rem;
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .form {
+    padding-inline: 0.5rem;
+    margin-block: 3rem;
+  }
+
+  .form label {
+    font-size: 1rem;
+  }
+
+  .form input,
+  .form text-area {
+    font-size: 1rem;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}
