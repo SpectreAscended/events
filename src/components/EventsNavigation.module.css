@@ -15,9 +15,10 @@
   color: black;
   padding: 0.5rem 0.5rem;
   border-radius: 0.25rem;
+  transition: background 250ms ease;
 }
 
 .list a:hover,
 .list a.active {
-  background-color: #ffc813;
+  background-color: #d1a427;
 }
