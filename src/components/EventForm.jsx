@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, useNavigate, redirect } from 'react-router-dom';
 import useValidation from '../hooks/useValidation';
 import classes from './EventForm.module.css';
 
@@ -8,10 +8,12 @@ const checkIfEmptyValue = value => {
 };
 
 const checkIfValidUrl = value => {
+  const trimmedValue = value.trim();
   return (
-    value.trim().includes('.') &&
-    value.trim().includes('/') &&
-    value.trim().length > 4
+    trimmedValue.includes('.') &&
+    trimmedValue.includes('/') &&
+    trimmedValue.includes(':') &&
+    trimmedValue.length > 4
   );
 };
 
@@ -60,7 +62,7 @@ const EventForm = ({ method, event }) => {
   const formIsValid = titleIsValid && imageIsValid && descriptionIsValid;
 
   return (
-    <Form method={method} className={classes.form}>
+    <Form className={classes.form} method="post">
       <div className={titleClasses}>
         <label htmlFor="title">Title</label>
         <input
@@ -85,7 +87,9 @@ const EventForm = ({ method, event }) => {
           onChange={imageChangeHandler}
           onBlur={imageBlurHandler}
         />
-        <p>Please enter a valid image URL</p>
+        <p>
+          Please enter a valid image URL. (Must include http:// or https://)
+        </p>
       </div>
 
       <label htmlFor="date">Date</label>
@@ -126,3 +130,31 @@ const EventForm = ({ method, event }) => {
 };
 
 export default EventForm;
+
+export const action = async ({ request, params }) => {
+  const data = await request.formData();
+
+  const eventData = {
+    title: data.get('title'),
+    img: data.get('image'),
+    date: data.get('date'),
+    description: data.get('description'),
+  };
+
+  const options = {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(eventData),
+  };
+
+  const res = await fetch(
+    'https://events-ffacd-default-rtdb.firebaseio.com/events.json',
+    options
+  );
+
+  if (!res.ok) {
+    throw json({ message: 'Trouble sending your post' }, { status: 500 });
+  }
+
+  return redirect('..');
+};

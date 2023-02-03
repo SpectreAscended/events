@@ -7,6 +7,7 @@ import EventDetailPage, { loader as eventLoader } from './pages/EventDetail';
 import EventsRootLayout from './pages/EventsRoot';
 import ErrorPage from './pages/Error';
 import NewEventPage from './pages/NewEvent';
+import { action as eventFormAction } from './components/EventForm';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
           {
             path: 'new',
             element: <NewEventPage />,
+            action: eventFormAction,
           },
         ],
       },

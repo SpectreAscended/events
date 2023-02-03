@@ -9,7 +9,7 @@ const useValidation = validation => {
   const hasError = isTouched && !isValid;
 
   const changeEnteredValueHandler = e => {
-    setIsTouched(true);
+    setIsTouched(false);
     setEnteredValue(e.target.value);
   };
 
