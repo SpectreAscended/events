@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouteLoaderData } from 'react-router';
 import EventItem from '../components/EventItem';
+import loaderRequest from '../utilities/loaderRequest';
 
 const EventDetailPage = () => {
   const event = useRouteLoaderData('event-detail');
@@ -13,25 +14,12 @@ export default EventDetailPage;
 
 export const loader = async ({ request, params }) => {
   const id = params.eventId;
-  const res = await fetch(
-    `https://events-ffacd-default-rtdb.firebaseio.com/events.json/`
-  );
 
-  const data = await res.json();
-
-  const loadedData = [];
-  for (const key in data) {
-    loadedData.push({
-      id: key,
-      title: data[key].title,
-      date: data[key].date,
-      img: data[key].img,
-      description: data[key].description,
-    });
-  }
+  const loadedData = await loaderRequest({
+    url: 'https://events-ffacd-default-rtdb.firebaseio.com/events.json/',
+  });
 
   const loadedEvent = loadedData.find(event => event.id === id);
 
-  console.log(loadedData);
   return loadedEvent;
 };
