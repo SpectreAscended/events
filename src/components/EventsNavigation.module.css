@@ -1,0 +1,23 @@
+.header {
+  max-width: 60rem;
+  margin-inline: auto;
+}
+
+.list {
+  display: flex;
+  gap: 2rem;
+  margin-inline: auto;
+  justify-content: center;
+}
+
+.list a {
+  background-color: #ccc;
+  color: black;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.list a:hover,
+.list a.active {
+  background-color: #ffc813;
+}
