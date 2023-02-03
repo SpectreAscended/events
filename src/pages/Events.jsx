@@ -12,7 +12,8 @@ const EventsPage = () => {
 export default EventsPage;
 
 export const loader = () => {
+  const REQUEST_URL = import.meta.env.VITE_DATABASE_URL;
   return loaderRequest({
-    url: 'https://events-ffacd-default-rtdb.firebaseio.com/events.json',
+    url: REQUEST_URL,
   });
 };

@@ -132,6 +132,7 @@ const EventForm = ({ method, event }) => {
 export default EventForm;
 
 export const action = async ({ request, params }) => {
+  const REQUEST_URL = import.meta.env.VITE_DATABASE_URL;
   const data = await request.formData();
 
   const eventData = {
@@ -147,10 +148,7 @@ export const action = async ({ request, params }) => {
     body: JSON.stringify(eventData),
   };
 
-  const res = await fetch(
-    'https://events-ffacd-default-rtdb.firebaseio.com/events.json',
-    options
-  );
+  const res = await fetch(REQUEST_URL, options);
 
   if (!res.ok) {
     throw json({ message: 'Trouble sending your post' }, { status: 500 });

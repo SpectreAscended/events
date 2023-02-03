@@ -20,7 +20,7 @@ const loaderRequest = async requestConfig => {
 
     const loadedEvents = [];
     for (const key in data) {
-      loadedEvents.push({
+      loadedEvents.unshift({
         id: key,
         title: data[key].title,
         img: data[key].img,
