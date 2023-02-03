@@ -5,7 +5,6 @@ import loaderRequest from '../utilities/loaderRequest';
 
 const EventDetailPage = () => {
   const event = useRouteLoaderData('event-detail');
-  console.log(event);
 
   return <EventItem event={event} />;
 };
