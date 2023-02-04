@@ -27,20 +27,15 @@ export const loader = async ({ request, params }) => {
 export const action = async ({ params, request }) => {
   const eventId = params.eventId;
 
-  const URL = import.meta.env.VITE_DATABASE_DELETE;
-  console.log(URL);
-  console.log(eventId);
-  try {
-    const res = await fetch(`${URL}${eventId}.json`, {
-      method: request.method,
-    });
+  const URL = import.meta.env.VITE_DATABASE_EDIT;
 
-    if (!res.ok) {
-      throw json({ message: 'Could not delete event' }, { status: 500 });
-    }
+  const res = await fetch(`${URL}${eventId}.json`, {
+    method: request.method,
+  });
 
-    return redirect('..');
-  } catch (err) {
-    console.error(err);
+  if (!res.ok) {
+    throw json({ message: 'Could not delete event' }, { status: 500 });
   }
+
+  return redirect('/events');
 };

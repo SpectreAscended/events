@@ -11,6 +11,7 @@ import EventsRootLayout from './pages/EventsRoot';
 import ErrorPage from './pages/Error';
 import NewEventPage from './pages/NewEvent';
 import { action as eventFormAction } from './components/EventForm';
+import EditEventPage from './pages/EditEvent';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
                 index: true,
                 element: <EventDetailPage />,
                 action: deleteEvent,
+              },
+              {
+                path: 'edit',
+                element: <EditEventPage />,
+                action: eventFormAction,
               },
             ],
           },

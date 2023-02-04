@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, useNavigate, redirect } from 'react-router-dom';
 import useValidation from '../hooks/useValidation';
 import classes from './EventForm.module.css';
-import formatDate from '../utilities/formatDate';
 
 const checkIfEmptyValue = value => {
   return value.trim() !== '';
@@ -22,30 +21,24 @@ const EventForm = ({ method, event }) => {
   const navigate = useNavigate();
 
   const {
-    enteredValue: titleEnteredValue,
     hasError: titleHasError,
     isValid: titleIsValid,
     changeEnteredValueHandler: titleChangeHandler,
     inputBlurHandler: titleBlurHandler,
-    resetValues: resetTitle,
   } = useValidation(checkIfEmptyValue);
 
   const {
-    enteredValue: imageEnteredValue,
     hasError: imageHasError,
     isValid: imageIsValid,
     changeEnteredValueHandler: imageChangeHandler,
     inputBlurHandler: imageBlurHandler,
-    resetValues: resetImage,
   } = useValidation(checkIfValidUrl);
 
   const {
-    enteredValue: descriptionEnteredValue,
     hasError: descriptionHasError,
     isValid: descriptionIsValid,
     changeEnteredValueHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-    resetValues: resetDescription,
   } = useValidation(checkIfEmptyValue);
 
   const cancelHandler = () => {
@@ -63,15 +56,14 @@ const EventForm = ({ method, event }) => {
   const formIsValid = titleIsValid && imageIsValid && descriptionIsValid;
 
   return (
-    <Form className={classes.form} method="post">
+    <Form className={classes.form} method={method}>
       <div className={titleClasses}>
         <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
           name="title"
-          //   defaultValue={event ? event.title : ''}
-          value={event && !titleEnteredValue ? event.title : titleEnteredValue}
+          defaultValue={event ? event.title : ''}
           onChange={titleChangeHandler}
           onBlur={titleBlurHandler}
         />
@@ -83,8 +75,7 @@ const EventForm = ({ method, event }) => {
           id="image"
           type="url"
           name="image"
-          // defaultValue={event ? event.image : ''}
-          value={event && !imageEnteredValue ? event.image : imageEnteredValue}
+          defaultValue={event ? event.img : ''}
           onChange={imageChangeHandler}
           onBlur={imageBlurHandler}
         />
@@ -107,12 +98,7 @@ const EventForm = ({ method, event }) => {
           name="description"
           id="description"
           rows="5"
-          //   defaultValue={event ? event.description : ''}
-          value={
-            event && !descriptionEnteredValue
-              ? event.description
-              : descriptionEnteredValue
-          }
+          defaultValue={event ? event.description : ''}
           onChange={descriptionChangeHandler}
           onBlur={descriptionBlurHandler}
         />
@@ -134,24 +120,32 @@ export default EventForm;
 
 export const action = async ({ request, params }) => {
   const REQUEST_URL = import.meta.env.VITE_DATABASE_URL;
+  const EDIT_URL = import.meta.env.VITE_DATABASE_EDIT;
+  const eventId = params.eventId;
   const data = await request.formData();
-
-  const formattedDate = formatDate(data.get('date'));
+  const method = request.method;
 
   const eventData = {
     title: data.get('title'),
     img: data.get('image'),
-    date: formattedDate,
+    date: data.get('date'),
     description: data.get('description'),
   };
 
+  let url = REQUEST_URL;
+  if (method === 'PATCH') {
+    url = `${EDIT_URL}${eventId}.json`;
+  }
+
+  console.log(method);
+
   const options = {
-    method: 'POST',
+    method: method,
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(eventData),
   };
 
-  const res = await fetch(REQUEST_URL, options);
+  const res = await fetch(url, options);
 
   if (!res.ok) {
     throw json({ message: 'Trouble sending your post' }, { status: 500 });

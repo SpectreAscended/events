@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './EventsList.module.css';
+import formatDate from '../utilities/formatDate';
 
 const EventsList = ({ events }) => {
   return (
@@ -14,7 +15,7 @@ const EventsList = ({ events }) => {
                 <img src={ev.img} alt={ev.title} />
                 <div className={classes.content}>
                   <h3>{ev.title}</h3>
-                  <span>{ev.date}</span>
+                  <span>{formatDate(ev.date)}</span>
                 </div>
               </Link>
             </li>
