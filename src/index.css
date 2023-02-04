@@ -15,10 +15,24 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   background-color: #2e2d2d;
   color: var(--color-neutral-400);
   font-family: sans-serif;
+}
+
+body::-webkit-scrollbar {
+  background-color: #272727;
+  width: 0.75rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #3d3939;
+  height: 2rem;
 }
 
 main {

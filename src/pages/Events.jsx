@@ -9,6 +9,7 @@ const EventsPage = () => {
   const fallbackContent = (
     <p
       style={{
+        display: 'block',
         textAlign: 'center',
         marginTop: '8rem',
         fontSize: '2rem',
