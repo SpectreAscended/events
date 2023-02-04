@@ -74,12 +74,13 @@
   width: 100%;
   z-index: -1;
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: right;
   transition: transform 250ms ease;
 }
 
 .actions button:hover::before {
   transform: scaleX(1);
+  transform-origin: left;
 }
 
 .actions button:disabled {

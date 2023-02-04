@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, useNavigate, redirect } from 'react-router-dom';
+import { Form, useNavigate, redirect, useNavigation } from 'react-router-dom';
 import useValidation from '../hooks/useValidation';
 import classes from './EventForm.module.css';
 import formatDate from '../utilities/formatDate';
@@ -20,6 +20,9 @@ const checkIfValidUrl = value => {
 
 const EventForm = ({ method, event }) => {
   const navigate = useNavigate();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === 'submitting';
 
   const {
     enteredValue: titleEnteredValue,
@@ -27,7 +30,6 @@ const EventForm = ({ method, event }) => {
     isValid: titleIsValid,
     changeEnteredValueHandler: titleChangeHandler,
     inputBlurHandler: titleBlurHandler,
-    resetValues: resetTitle,
   } = useValidation(checkIfEmptyValue);
 
   const {
@@ -36,7 +38,6 @@ const EventForm = ({ method, event }) => {
     isValid: imageIsValid,
     changeEnteredValueHandler: imageChangeHandler,
     inputBlurHandler: imageBlurHandler,
-    resetValues: resetImage,
   } = useValidation(checkIfValidUrl);
 
   const {
@@ -45,7 +46,6 @@ const EventForm = ({ method, event }) => {
     isValid: descriptionIsValid,
     changeEnteredValueHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-    resetValues: resetDescription,
   } = useValidation(checkIfEmptyValue);
 
   const cancelHandler = () => {
@@ -119,11 +119,11 @@ const EventForm = ({ method, event }) => {
         <p>Description cannot be blank</p>
       </div>
       <div className={classes.actions}>
-        <button type="button" onClick={cancelHandler}>
+        <button type="button" disabled={isSubmitting} onClick={cancelHandler}>
           Cancel
         </button>
-        <button disabled={!formIsValid} type="submit">
-          Submit
+        <button disabled={!formIsValid || isSubmitting} type="submit">
+          {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
       </div>
     </Form>
