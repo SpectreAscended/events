@@ -13,9 +13,10 @@ export default EventDetailPage;
 
 export const loader = async ({ request, params }) => {
   const id = params.eventId;
+  const REQUEST_URL = import.meta.env.VITE_DATABASE_URL;
 
   const loadedData = await loaderRequest({
-    url: 'https://events-ffacd-default-rtdb.firebaseio.com/events.json/',
+    url: REQUEST_URL,
   });
 
   const loadedEvent = loadedData.find(event => event.id === id);

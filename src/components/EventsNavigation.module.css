@@ -1,6 +1,7 @@
 .header {
   max-width: 60rem;
   margin-inline: auto;
+  margin-bottom: 3rem;
 }
 
 .list {
@@ -21,4 +22,10 @@
 .list a:hover,
 .list a.active {
   background-color: #d1a427;
+}
+
+@media only screen and (max-width: 468px) {
+  .list {
+    gap: 1rem;
+  }
 }
