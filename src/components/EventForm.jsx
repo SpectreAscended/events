@@ -19,7 +19,6 @@ const checkIfValidUrl = value => {
 
 const EventForm = ({ method, event }) => {
   const navigate = useNavigate();
-  let formIsValid = false;
 
   const {
     hasError: titleHasError,
@@ -54,7 +53,7 @@ const EventForm = ({ method, event }) => {
   const imageClasses = inputClassesHandler(imageHasError);
   const descriptionClasses = inputClassesHandler(descriptionHasError);
 
-  formIsValid = titleIsValid && imageIsValid && descriptionIsValid;
+  const formIsValid = titleIsValid && imageIsValid && descriptionIsValid;
 
   return (
     <Form className={classes.form} method={method}>
@@ -137,8 +136,6 @@ export const action = async ({ request, params }) => {
   if (method === 'PATCH') {
     url = `${EDIT_URL}${eventId}.json`;
   }
-
-  console.log(method);
 
   const options = {
     method: method,
