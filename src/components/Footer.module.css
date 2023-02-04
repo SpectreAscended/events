@@ -1,0 +1,10 @@
+.footer {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.footer a:hover,
+.footer a:active {
+  color: #ffc813;
+}

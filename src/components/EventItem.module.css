@@ -42,7 +42,7 @@
 
 .actions * {
   border: none;
-  background: #d1d1d1;
+  background-color: #d1d1d1;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   color: #000;
@@ -92,6 +92,10 @@
 
   .actions * {
     font-size: 0.8rem;
+  }
+
+  .actions *:hover {
+    background-color: #d1d1d1;
   }
 
   .actions button {
