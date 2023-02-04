@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, useNavigate, redirect } from 'react-router-dom';
 import useValidation from '../hooks/useValidation';
 import classes from './EventForm.module.css';
+import formatDate from '../utilities/formatDate';
 
 const checkIfEmptyValue = value => {
   return value.trim() !== '';
@@ -135,10 +136,12 @@ export const action = async ({ request, params }) => {
   const REQUEST_URL = import.meta.env.VITE_DATABASE_URL;
   const data = await request.formData();
 
+  const formattedDate = formatDate(data.get('date'));
+
   const eventData = {
     title: data.get('title'),
     img: data.get('image'),
-    date: data.get('date'),
+    date: formattedDate,
     description: data.get('description'),
   };
 

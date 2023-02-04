@@ -12,7 +12,7 @@ const EventsPage = () => {
         textAlign: 'center',
         marginTop: '8rem',
         fontSize: '2rem',
-        color: 'white',
+        color: '#e4e0e0',
       }}
     >
       Loading...
