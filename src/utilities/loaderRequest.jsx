@@ -36,17 +36,3 @@ const loaderRequest = async requestConfig => {
 };
 
 export default loaderRequest;
-
-const fetchItem = async () => {
-  const eventId = '-NNQCBWr8xisalR6tfAl';
-
-  const res = await fetch(
-    `https://events-ffacd-default-rtdb.firebaseio.com/events/${eventId}.json`
-  );
-
-  const data = await res.json();
-
-  console.log(data);
-};
-
-fetchItem();
