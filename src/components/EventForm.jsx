@@ -19,7 +19,6 @@ const checkIfValidUrl = value => {
 
 const EventForm = ({ method, event }) => {
   const navigate = useNavigate();
-  const formMethod = method;
   let formIsValid = false;
 
   const {
@@ -27,21 +26,21 @@ const EventForm = ({ method, event }) => {
     isValid: titleIsValid,
     changeEnteredValueHandler: titleChangeHandler,
     inputBlurHandler: titleBlurHandler,
-  } = useValidation(checkIfEmptyValue, event.title);
+  } = useValidation(checkIfEmptyValue, event ? event.title : undefined);
 
   const {
     hasError: imageHasError,
     isValid: imageIsValid,
     changeEnteredValueHandler: imageChangeHandler,
     inputBlurHandler: imageBlurHandler,
-  } = useValidation(checkIfValidUrl, event.img);
+  } = useValidation(checkIfValidUrl, event ? event.img : undefined);
 
   const {
     hasError: descriptionHasError,
     isValid: descriptionIsValid,
     changeEnteredValueHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-  } = useValidation(checkIfEmptyValue, event.description);
+  } = useValidation(checkIfEmptyValue, event ? event.description : undefined);
 
   const cancelHandler = () => {
     navigate('..');

@@ -7,7 +7,9 @@ const useValidation = (validation, defaultValue) => {
   const isValid = validation(enteredValue);
 
   useEffect(() => {
-    setEnteredValue(defaultValue);
+    if (defaultValue) {
+      setEnteredValue(defaultValue);
+    }
   }, []);
 
   const hasError = isTouched && !isValid;
