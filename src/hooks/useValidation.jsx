@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const useValidation = validation => {
+const useValidation = (validation, defaultValue) => {
   const [enteredValue, setEnteredValue] = useState('');
   const [isTouched, setIsTouched] = useState(false);
 
   const isValid = validation(enteredValue);
+
+  useEffect(() => {
+    setEnteredValue(defaultValue);
+  }, []);
 
   const hasError = isTouched && !isValid;
 

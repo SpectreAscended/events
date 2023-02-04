@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, useNavigate, redirect } from 'react-router-dom';
 import useValidation from '../hooks/useValidation';
 import classes from './EventForm.module.css';
@@ -19,27 +19,29 @@ const checkIfValidUrl = value => {
 
 const EventForm = ({ method, event }) => {
   const navigate = useNavigate();
+  const formMethod = method;
+  let formIsValid = false;
 
   const {
     hasError: titleHasError,
     isValid: titleIsValid,
     changeEnteredValueHandler: titleChangeHandler,
     inputBlurHandler: titleBlurHandler,
-  } = useValidation(checkIfEmptyValue);
+  } = useValidation(checkIfEmptyValue, event.title);
 
   const {
     hasError: imageHasError,
     isValid: imageIsValid,
     changeEnteredValueHandler: imageChangeHandler,
     inputBlurHandler: imageBlurHandler,
-  } = useValidation(checkIfValidUrl);
+  } = useValidation(checkIfValidUrl, event.img);
 
   const {
     hasError: descriptionHasError,
     isValid: descriptionIsValid,
     changeEnteredValueHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-  } = useValidation(checkIfEmptyValue);
+  } = useValidation(checkIfEmptyValue, event.description);
 
   const cancelHandler = () => {
     navigate('..');
@@ -53,7 +55,7 @@ const EventForm = ({ method, event }) => {
   const imageClasses = inputClassesHandler(imageHasError);
   const descriptionClasses = inputClassesHandler(descriptionHasError);
 
-  const formIsValid = titleIsValid && imageIsValid && descriptionIsValid;
+  formIsValid = titleIsValid && imageIsValid && descriptionIsValid;
 
   return (
     <Form className={classes.form} method={method}>
