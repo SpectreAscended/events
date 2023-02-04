@@ -33,6 +33,31 @@
   color: #d1d1d1;
 }
 
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.actions * {
+  border: none;
+  background: #d1d1d1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: #000;
+  transition: background 250ms ease;
+}
+
+.actions button {
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.actions *:hover {
+  background-color: #d1a427;
+}
+
 @media only screen and (max-width: 768px) {
   .event img {
     max-width: 90%;
@@ -54,5 +79,22 @@
 
   .event img {
     border-radius: 0.25rem;
+  }
+
+  .content {
+    margin-bottom: 2rem;
+  }
+
+  .actions {
+    margin-right: 1rem;
+    margin-bottom: -1rem;
+  }
+
+  .actions * {
+    font-size: 0.8rem;
+  }
+
+  .actions button {
+    font-size: 0.8rem;
   }
 }
