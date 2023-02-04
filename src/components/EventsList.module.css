@@ -48,14 +48,20 @@
   text-transform: capitalize;
 }
 
+.content span {
+  color: #d1a427;
+}
+
+@media only screen and (max-width: 768px) {
+  .default-message {
+    margin-top: 4rem;
+  }
+}
+
 @media only screen and (max-width: 468px) {
   .events h2 {
     font-size: 2rem;
     text-align: center;
-  }
-
-  .default-message {
-    margin-top: 4rem;
   }
 
   .item a {
