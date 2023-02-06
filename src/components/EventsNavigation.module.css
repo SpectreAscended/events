@@ -13,6 +13,7 @@
 
 .list a {
   background-color: #ccc;
+  display: block;
   color: black;
   padding: 0.5rem 0.5rem;
   border-radius: 0.25rem;
