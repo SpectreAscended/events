@@ -62,13 +62,14 @@
   cursor: pointer;
   z-index: 2;
   overflow: hidden;
-  background-color: #ccc;
+  background-color: #ffc813;
 }
 
 .actions button::before {
   content: '';
-  position: absolute;
   background-color: #d1a427;
+
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
