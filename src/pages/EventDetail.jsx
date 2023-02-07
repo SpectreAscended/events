@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouteLoaderData, redirect, json } from 'react-router';
 import EventItem from '../components/EventItem';
 import loaderRequest from '../utilities/loaderRequest';
+import getUid from '../utilities/getUid';
 
 const EventDetailPage = () => {
   const event = useRouteLoaderData('event-detail');

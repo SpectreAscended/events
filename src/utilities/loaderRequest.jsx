@@ -26,6 +26,7 @@ const loaderRequest = async requestConfig => {
         img: data[key].img,
         date: data[key].date,
         description: data[key].description,
+        uid: data[key].uid,
       });
     }
     return loadedEvents;

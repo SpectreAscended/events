@@ -9,10 +9,10 @@ export function useAuth() {
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
+  const [uid, setUid] = useState();
   const [loading, setLoading] = useState(true);
 
   const signup = (email, password) => {
-    console.log('running');
     auth.createUserWithEmailAndPassword(email, password);
   };
 
@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     auth.signOut();
+    localStorage.removeItem('user');
   };
 
   useEffect(() => {
@@ -29,7 +30,14 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       setCurrentUser(user);
     });
-  });
+  }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      setUid(currentUser.uid);
+    }
+    localStorage.setItem('user', JSON.stringify(uid));
+  }, [uid, currentUser]);
 
   const value = {
     currentUser,
