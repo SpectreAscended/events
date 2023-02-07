@@ -1,12 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import classes from './MainNavigation.module.css';
 import { useAuth } from '../contexts/authContext';
 
 const MainNavigation = () => {
   const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
 
   const signOutHandler = () => {
+    navigate('/events');
     logout();
   };
 
