@@ -7,8 +7,11 @@ import getUid from '../utilities/getUid';
 
 const EventItem = ({ event }) => {
   const { currentUser } = useAuth();
+  let uid;
 
-  const uid = getUid();
+  if (currentUser) {
+    uid = getUid();
+  }
   const eventId = event.uid;
 
   const submit = useSubmit();
