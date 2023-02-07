@@ -2,8 +2,11 @@ import React from 'react';
 import { useSubmit, Link } from 'react-router-dom';
 import classes from './EventItem.module.css';
 import formatDate from '../utilities/formatDate';
+import { useAuth } from '../contexts/authContext';
 
 const EventItem = ({ event }) => {
+  const { currentUser } = useAuth();
+
   const submit = useSubmit();
 
   const deleteEventHandler = () => {
@@ -22,10 +25,12 @@ const EventItem = ({ event }) => {
         <span>{formatDate(event.date)}</span>
         <p>{event.description}</p>
       </div>
-      <div className={classes.actions}>
-        <Link to="edit">Edit</Link>
-        <button onClick={deleteEventHandler}>Delete</button>
-      </div>
+      {currentUser && (
+        <div className={classes.actions}>
+          <Link to="edit">Edit</Link>
+          <button onClick={deleteEventHandler}>Delete</button>
+        </div>
+      )}
     </article>
   );
 };

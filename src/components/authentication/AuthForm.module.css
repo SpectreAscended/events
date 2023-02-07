@@ -96,6 +96,8 @@
 .actions a:visited {
   text-decoration: none;
   color: inherit;
+  border-bottom: 1px solid currentColor;
+  transition: color 250ms ease;
 }
 
 .actions a:hover,
