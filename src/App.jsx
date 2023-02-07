@@ -12,7 +12,8 @@ import ErrorPage from './pages/Error';
 import NewEventPage from './pages/NewEvent';
 import { action as eventFormAction } from './components/EventForm';
 import EditEventPage from './pages/EditEvent';
-import AuthenticationPage from './pages/Authentication';
+import SignupPage from './pages/Signup';
+import LoginPage from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: 'auth',
-        element: <AuthenticationPage />,
+        path: 'signup',
+        element: <SignupPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
       },
       {
         path: 'events',

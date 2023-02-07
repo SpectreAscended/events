@@ -92,6 +92,17 @@
   transform: scaleX(0);
 }
 
+.actions a:link,
+.actions a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.actions a:hover,
+.actions a:active {
+  color: var(--color-neutral-200);
+}
+
 @media only screen and (max-width: 768px) {
   .form {
     padding-inline: 2rem;
@@ -115,6 +126,11 @@
 
   .actions {
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 2rem;
+  }
+  .actions button {
+    display: block;
+    width: 100%;
   }
 }
