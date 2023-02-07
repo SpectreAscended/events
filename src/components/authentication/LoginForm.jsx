@@ -53,7 +53,7 @@ const LoginForm = () => {
 
       <menu className={classes.actions}>
         <span>Need an account?</span>
-        <Link to="/signup">Sign up</Link>
+        <Link to="/signup">Sign up!</Link>
         <button type="submit">Log in</button>
       </menu>
     </form>
