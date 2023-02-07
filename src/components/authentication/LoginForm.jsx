@@ -1,28 +1,35 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import classes from './AuthForm.module.css';
-import { Link, Form, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext';
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
   const navigate = useNavigate();
 
   const loginHandler = async e => {
     e.preventDefault();
-    console.log(emailRef.current.value, passwordRef.current.value);
     try {
+      setError('');
+      setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
+
       navigate('/events');
     } catch (err) {
       console.error(err);
+      setError('Incorrect email or password');
     }
+    setLoading(false);
   };
 
   return (
     <form className={classes.form} onSubmit={loginHandler}>
       <h2 style={{ textAlign: 'center', fontSize: '2rem' }}>Log In</h2>
+      {error && <p className={classes.error}>{error}</p>}
       <div className={classes.control}>
         <label htmlFor="email">Email</label>
         <input

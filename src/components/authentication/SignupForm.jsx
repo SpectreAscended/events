@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
-import { Form, Link, useNavigate } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from './AuthForm.module.css';
 import { useAuth } from '../../contexts/authContext';
 
 const SignupForm = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -12,6 +14,11 @@ const SignupForm = () => {
 
   const signUpHandler = async e => {
     e.preventDefault();
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setError('Passwords do not match.');
+      return;
+    }
 
     try {
       await signup(emailRef.current.value, passwordRef.current.value);
@@ -28,6 +35,7 @@ const SignupForm = () => {
   return (
     <form className={classes.form} onSubmit={signUpHandler}>
       <h2 style={{ textAlign: 'center', fontSize: '2rem' }}>Sign Up</h2>
+      {error && <p className={classes.error}>{error}</p>}
       <div className={classes.control}>
         <label htmlFor="email">Email</label>
         <input
