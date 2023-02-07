@@ -12,8 +12,9 @@ import ErrorPage from './pages/Error';
 import NewEventPage from './pages/NewEvent';
 import { action as eventFormAction } from './components/EventForm';
 import EditEventPage from './pages/EditEvent';
-import SignupPage from './pages/Signup';
+import SignupPage, { action as signupAction } from './pages/Signup';
 import LoginPage from './pages/Login';
+import { useAuth } from './contexts/authContext';
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,9 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const { currentUser } = useAuth();
+  console.log(currentUser && currentUser);
+
   return (
     <>
       <RouterProvider router={router} />

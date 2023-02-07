@@ -1,8 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './MainNavigation.module.css';
+import { useAuth } from '../contexts/authContext';
 
 const MainNavigation = () => {
+  const { currentUser, logout } = useAuth();
+
+  const signOutHandler = () => {
+    logout();
+  };
+
   return (
     <header className={classes.header}>
       <nav>
@@ -27,16 +34,23 @@ const MainNavigation = () => {
               Events
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              Log in
-            </NavLink>
-          </li>
+          {!currentUser && (
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Log in
+              </NavLink>
+            </li>
+          )}
+          {currentUser && (
+            <li>
+              <button onClick={signOutHandler}>Log out</button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
