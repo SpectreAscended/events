@@ -15,8 +15,21 @@ const SignupForm = () => {
   const signUpHandler = async e => {
     e.preventDefault();
 
+    if (
+      !emailRef.current.value.includes('@') ||
+      !emailRef.current.value.includes('.')
+    ) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       setError('Passwords do not match.');
+      return;
+    }
+
+    if (passwordRef.current.value.length < 6) {
+      setError('Passwords must be atleast 6 characters.');
       return;
     }
 

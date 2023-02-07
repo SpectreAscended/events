@@ -32,6 +32,8 @@
   border-radius: 0.25rem;
   text-align: center;
   margin-top: 2rem;
+  max-width: 60%;
+  margin-inline: auto;
 }
 
 .control p {
@@ -118,6 +120,11 @@
 @media only screen and (max-width: 768px) {
   .form {
     padding-inline: 2rem;
+  }
+
+  .form .error {
+    max-width: 85%;
+    padding-inline: 0.5rem;
   }
 }
 
