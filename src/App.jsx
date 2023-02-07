@@ -72,8 +72,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const { currentUser } = useAuth();
-  console.log(currentUser && currentUser);
+  // const { currentUser } = useAuth();
 
   return (
     <>

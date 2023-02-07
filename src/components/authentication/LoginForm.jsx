@@ -54,21 +54,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-// export const action = async ({ request }) => {
-//   const data = await request.formData();
-//   // const { login } = useAuth();
-
-//   const userData = {
-//     email: data.get('email'),
-//     password: data.get('password'),
-//   };
-
-//   console.log(userData);
-
-//   try {
-//     // await login(userData.email, userData.password);
-//   } catch (err) {}
-
-//   return redirect('/events');
-// };
