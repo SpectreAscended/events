@@ -13,11 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const signup = (email, password) => {
-    try {
-      auth.createUserWithEmailAndPassword(email, password);
-    } catch (err) {
-      console.error('!!!!' + err);
-    }
+    const success = auth.createUserWithEmailAndPassword(email, password);
   };
 
   const login = (email, password) => {
@@ -39,8 +35,8 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (currentUser) {
       setUid(currentUser.uid);
+      localStorage.setItem('user', JSON.stringify(uid));
     }
-    localStorage.setItem('user', JSON.stringify(uid));
   }, [uid, currentUser]);
 
   const value = {

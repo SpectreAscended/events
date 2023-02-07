@@ -3,14 +3,14 @@ import { useSubmit, Link } from 'react-router-dom';
 import classes from './EventItem.module.css';
 import formatDate from '../utilities/formatDate';
 import { useAuth } from '../contexts/authContext';
-import getUid from '../utilities/getUid';
+import { getUserID } from '../utilities/auth';
 
 const EventItem = ({ event }) => {
   const { currentUser } = useAuth();
   let uid;
 
   if (currentUser) {
-    uid = getUid();
+    uid = getUserID();
   }
   const eventId = event.uid;
 

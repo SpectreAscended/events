@@ -14,7 +14,7 @@ import { action as eventFormAction } from './components/EventForm';
 import EditEventPage from './pages/EditEvent';
 import SignupPage, { action as signupAction } from './pages/Signup';
 import LoginPage from './pages/Login';
-import { useAuth } from './contexts/authContext';
+import { checkAuthLoader } from './utilities/auth';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +56,7 @@ const router = createBrowserRouter([
               {
                 path: 'edit',
                 element: <EditEventPage />,
+                loader: checkAuthLoader,
                 action: eventFormAction,
               },
             ],
@@ -63,6 +64,7 @@ const router = createBrowserRouter([
           {
             path: 'new',
             element: <NewEventPage />,
+            loader: checkAuthLoader,
             action: eventFormAction,
           },
         ],

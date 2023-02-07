@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, useNavigate, redirect, useNavigation } from 'react-router-dom';
 import useValidation from '../hooks/useValidation';
 import classes from './EventForm.module.css';
-import getUid from '../utilities/getUid';
+import { getUserID } from '../utilities/auth';
 
 const checkIfEmptyValue = value => {
   return value.trim() !== '';
@@ -128,7 +128,7 @@ export const action = async ({ request, params }) => {
   const eventId = params.eventId;
   const data = await request.formData();
   const method = request.method;
-  const uid = getUid();
+  const uid = getUserID();
 
   const eventData = {
     title: data.get('title'),
