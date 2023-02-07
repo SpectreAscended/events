@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
 import classes from './AuthForm.module.css';
 import { useAuth } from '../../contexts/authContext';
 
@@ -8,12 +8,18 @@ const SignupForm = () => {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { signup } = useAuth();
+  const navigate = useNavigate();
 
   const signUpHandler = async e => {
     e.preventDefault();
 
     try {
       await signup(emailRef.current.value, passwordRef.current.value);
+      navigate('/events');
+
+      emailRef.current.value = '';
+      passwordRef.current.value = '';
+      passwordConfirmRef.current.value = '';
     } catch (err) {
       console.error(err);
     }
