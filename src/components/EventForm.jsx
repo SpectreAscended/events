@@ -129,6 +129,7 @@ export const action = async ({ request, params }) => {
   const data = await request.formData();
   const method = request.method;
   const uid = getUserID();
+  let existingEventId;
 
   const eventData = {
     title: data.get('title'),
@@ -141,6 +142,13 @@ export const action = async ({ request, params }) => {
   let url = REQUEST_URL;
   if (method === 'PATCH') {
     url = `${EDIT_URL}${eventId}.json`;
+    const res = await fetch(url);
+    const data = await res.json();
+    existingEventId = data.uid;
+  }
+
+  if (existingEventId && existingEventId !== uid) {
+    return redirect('/events');
   }
 
   const options = {

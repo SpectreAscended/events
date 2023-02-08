@@ -11,7 +11,6 @@ export const getUserID = () => {
 
 export const checkAuthLoader = () => {
   const id = getUserID();
-  console.log(id);
 
   if (!id) {
     return redirect('/login');
